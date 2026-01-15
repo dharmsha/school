@@ -32,7 +32,7 @@ const Navigation = () => {
                 <BookOpen className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                SchoolHub
+                SchoolYarri
               </span>
             </Link>
 
