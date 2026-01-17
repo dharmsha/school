@@ -27,12 +27,11 @@ const Navigation = () => {
 
   const navItems = [
     { name: 'Home', icon: Home, href: '/' },
-    { name: 'Notes', icon: BookOpen, href: '/notes' },
-    { name: 'Papers', icon: FileText, href: '/papers' },
-    { name: 'Timetable', icon: Calendar, href: '/timetable' },
-    { name: 'Discuss', icon: MessageSquare, href: '/discuss' },
+    { name: 'Software', icon: BookOpen, href: '/software' },
+    { name: 'Hardware', icon: FileText, href: '/hardware' },
+    { name: 'Furniture', icon: Calendar, href: '/furniture' },
+    { name: 'School Kit', icon: MessageSquare, href: '/kit' },
   ];
-
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${

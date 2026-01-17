@@ -22,7 +22,7 @@ const Footer = () => {
                 <BookOpen className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold">SchoolHub</h2>
+                <h2 className="text-2xl font-bold">SchoolYarri</h2>
                 <p className="text-gray-400 text-sm">Your Complete School Platform</p>
               </div>
             </div>
@@ -82,7 +82,7 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center">
                 <Mail className="h-5 w-5 text-blue-400 mr-3" />
-                <span className="text-gray-400">support@schoolhub.com</span>
+                <span className="text-gray-400">support@schoolyarri.com</span>
               </div>
               <div className="flex items-center">
                 <Phone className="h-5 w-5 text-blue-400 mr-3" />
@@ -135,10 +135,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
               <p className="text-gray-400">
-                © {currentYear} SchoolHub. All rights reserved.
+                © {currentYear} SchoolYarri. All rights reserved.
               </p>
               <Heart className="h-4 w-4 text-red-500 mx-2" />
-              <p className="text-gray-400">Made for students</p>
+              <p className="text-gray-400">Made By Creator Mind</p>
             </div>
             
             <div className="flex flex-wrap gap-6 text-sm">
