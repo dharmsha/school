@@ -96,7 +96,7 @@ const Navigation = () => {
                   <span className="font-medium">{item.name}</span>
                 </Link>
               ))}
-              <div className="pt-4 border-t">
+              <div className="pt-0 border-t">
                 <button className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg">
                   Sign In
                 </button>

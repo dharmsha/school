@@ -22,13 +22,10 @@ const MobileNav = () => {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
-      {/* Background blur effect */}
-      <div className="absolute inset-0 backdrop-blur-lg bg-white/90 border-t border-gray-200/80 shadow-[0_-4px_20px_-8px_rgba(0,0,0,0.1)]"></div>
-      
-      {/* Floating effect container */}
-      <div className="relative px-4">
-        <div className="flex justify-around items-center h-16 max-w-md mx-auto">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 pb-3 pt-2">
+      {/* Main navigation container with subtle shadow and border */}
+      <div className="mx-4 rounded-2xl bg-white border border-gray-100 shadow-lg">
+        <div className="flex items-center justify-between px-4 h-16">
           {navItems.map((item) => {
             const isActive = activeTab === item.href;
             
@@ -36,40 +33,49 @@ const MobileNav = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative flex flex-col items-center justify-center flex-1 transition-all duration-300 ${
-                  isActive ? 'text-blue-600 -translate-y-1' : 'text-gray-600 hover:text-blue-500'
+                className={`relative flex flex-col items-center justify-center transition-all duration-200 ${
+                  isActive 
+                    ? 'text-blue-600' 
+                    : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
-                {/* Active indicator */}
-                {isActive && (
-                  <div className="absolute -top-1 w-12 h-1 bg-gradient-to-r from-blue-500 to-blue-400 rounded-b-full"></div>
-                )}
-                
-                {/* Icon container with gradient effect */}
-                <div className={`relative p-2.5 rounded-xl transition-all duration-300 ${
-                  isActive 
-                    ? 'bg-gradient-to-br from-blue-50 to-blue-100/80 shadow-[0_4px_12px_-2px_rgba(59,130,246,0.3)]' 
-                    : 'bg-transparent hover:bg-gray-100/50'
-                }`}>
-                  <item.icon 
-                    className={`h-5 w-5 transition-transform duration-300 ${isActive ? 'scale-110' : ''}`} 
-                    strokeWidth={isActive ? 2.2 : 1.8}
-                  />
-                  
-                  {/* Pulsing dot for active state */}
+                {/* Main icon container */}
+                <div className="relative flex flex-col items-center">
+                  {/* Active background indicator */}
                   {isActive && (
-                    <div className="absolute -top-0.5 -right-0.5">
-                      <div className="h-2 w-2 bg-blue-500 rounded-full animate-pulse"></div>
-                    </div>
+                    <div className="absolute -inset-2 bg-blue-50 rounded-xl"></div>
                   )}
+                  
+                  {/* Icon with active state styling */}
+                  <div className={`relative z-10 p-2.5 rounded-lg transition-all duration-200 ${
+                    isActive 
+                      ? 'bg-white shadow-sm' 
+                      : ''
+                  }`}>
+                    <item.icon 
+                      className={`h-5 w-5 transition-transform duration-200 ${
+                        isActive ? 'scale-105' : ''
+                      }`} 
+                      strokeWidth={isActive ? 2.3 : 1.8}
+                    />
+                    
+                    {/* Active dot indicator */}
+                    {isActive && (
+                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
+                        <div className="h-1.5 w-1.5 bg-blue-500 rounded-full"></div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Label text */}
+                  <span className={`text-[10px] font-medium mt-1.5 transition-all duration-200 ${
+                    isActive 
+                      ? 'text-blue-600 font-semibold scale-105' 
+                      : 'text-gray-600'
+                  }`}>
+                    {item.name}
+                  </span>
                 </div>
-                
-                {/* Label with better typography */}
-                <span className={`text-xs font-medium mt-1 transition-all duration-300 ${
-                  isActive ? 'opacity-100' : 'opacity-80'
-                }`}>
-                  {item.name}
-                </span>
               </Link>
             );
           })}
