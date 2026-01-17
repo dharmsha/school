@@ -114,46 +114,47 @@ const TrendingResources = ({ activeTab, onTabChange }: TrendingResourcesProps) =
   });
 
   return (
-    <section>
+    <section className="w-full max-w-full">
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8">
-        <div>
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 lg:mb-8">
+        <div className="mb-4 lg:mb-0">
           <div className="flex items-center mb-2">
-            <Flame className="h-5 w-5 text-orange-500 mr-2" />
-            <span className="text-sm font-medium text-orange-600">TRENDING THIS WEEK</span>
+            <Flame className="h-4 w-4 sm:h-5 sm:w-5 text-orange-500 mr-2" />
+            <span className="text-xs sm:text-sm font-medium text-orange-600">TRENDING THIS WEEK</span>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Featured Resources</h2>
-          <p className="text-gray-600 mt-2">Top-rated study materials from our community</p>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">Featured Resources</h2>
+          <p className="text-sm sm:text-base text-gray-600 mt-1">Top-rated study materials from our community</p>
         </div>
 
-        <div className="flex flex-wrap gap-4 mt-4 lg:mt-0">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           {/* Tabs */}
-          <div className="flex bg-gray-100 p-1 rounded-xl">
+          <div className="flex bg-gray-100 p-0.5 sm:p-1 rounded-lg sm:rounded-xl overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
                   onClick={() => onTabChange(tab.id)}
-                  className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  className={`flex items-center px-2 sm:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'bg-white text-gray-900 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
-                  <Icon className="h-4 w-4 mr-2" />
-                  {tab.label}
+                  <Icon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">{tab.label}</span>
+                  <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
                 </button>
               );
             })}
           </div>
 
           {/* Sort Dropdown */}
-          <div className="relative">
+          <div className="relative self-start">
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="appearance-none bg-white border border-gray-300 rounded-xl px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-medium"
+              className="appearance-none bg-white border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 pr-8 sm:pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs sm:text-sm font-medium w-full"
             >
               {sortOptions.map(option => (
                 <option key={option.id} value={option.id}>
@@ -161,75 +162,75 @@ const TrendingResources = ({ activeTab, onTabChange }: TrendingResourcesProps) =
                 </option>
               ))}
             </select>
-            <Filter className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+            <Filter className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 h-3 w-3 sm:h-4 sm:w-4 text-gray-400 pointer-events-none" />
           </div>
         </div>
       </div>
 
       {/* Resources Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
         {filteredResources.map((resource) => (
           <div
             key={resource.id}
-            className={`bg-white rounded-2xl border-2 ${
+            className={`bg-white rounded-xl sm:rounded-2xl border ${
               resource.featured ? 'border-blue-300' : 'border-gray-200'
-            } overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group`}
+            } overflow-hidden hover:shadow-lg sm:hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 sm:hover:-translate-y-1 group w-full max-w-full`}
           >
             {/* Resource Header */}
-            <div className={`h-2 bg-gradient-to-r ${resource.color}`} />
+            <div className={`h-1.5 sm:h-2 bg-gradient-to-r ${resource.color}`} />
             
-            <div className="p-6">
+            <div className="p-3 sm:p-4 lg:p-6">
               {/* Badges */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-2">
-                  <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-hide">
+                  <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium whitespace-nowrap">
                     {resource.subject}
                   </span>
                   {resource.featured && (
-                    <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-medium">
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-medium whitespace-nowrap">
                       Featured
                     </span>
                   )}
                 </div>
-                <span className="text-xs text-gray-500">{resource.uploaded}</span>
+                <span className="text-xs text-gray-500 whitespace-nowrap">{resource.uploaded}</span>
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-2 sm:mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
                 {resource.title}
               </h3>
 
               {/* Stats */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-2 sm:gap-0">
+                <div className="flex items-center justify-between sm:justify-start sm:space-x-4 lg:space-x-6">
                   <div className="flex items-center">
-                    <Download className="h-4 w-4 text-gray-400 mr-2" />
-                    <span className="text-sm text-gray-600">{resource.downloads}</span>
+                    <Download className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 mr-1 sm:mr-2" />
+                    <span className="text-xs sm:text-sm text-gray-600">{resource.downloads}</span>
                   </div>
                   <div className="flex items-center">
-                    <Eye className="h-4 w-4 text-gray-400 mr-2" />
-                    <span className="text-sm text-gray-600">{resource.views}</span>
+                    <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 mr-1 sm:mr-2" />
+                    <span className="text-xs sm:text-sm text-gray-600">{resource.views}</span>
                   </div>
                   <div className="flex items-center">
-                    <Star className="h-4 w-4 text-amber-400 fill-amber-400 mr-2" />
-                    <span className="text-sm text-gray-600">{resource.rating}</span>
+                    <Star className="h-3 w-3 sm:h-4 sm:w-4 text-amber-400 fill-amber-400 mr-1 sm:mr-2" />
+                    <span className="text-xs sm:text-sm text-gray-600">{resource.rating}</span>
                   </div>
                 </div>
-                <span className="text-xs text-gray-500">{resource.size}</span>
+                <span className="text-xs text-gray-500 text-right sm:text-left">{resource.size}</span>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex space-x-3">
-                <button className="flex-1 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-3 rounded-xl hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 font-medium flex items-center justify-center group/btn">
-                  <Download className="h-4 w-4 mr-2 group-hover/btn:animate-bounce" />
+              <div className="flex space-x-2 sm:space-x-3">
+                <button className="flex-1 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-2 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-300 text-xs sm:text-sm font-medium flex items-center justify-center group/btn">
+                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 group-hover/btn:animate-bounce" />
                   Download
                 </button>
-                <button className="px-4 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors group/share">
-                  <Share2 className="h-4 w-4 text-gray-600 group-hover/share:text-blue-600" />
+                <button className="px-2 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl hover:bg-gray-50 transition-colors group/share flex-shrink-0">
+                  <Share2 className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600 group-hover/share:text-blue-600" />
                 </button>
-                <button className="px-4 py-3 border border-gray-300 rounded-xl hover:bg-red-50 transition-colors group/like">
+                <button className="px-2 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl hover:bg-red-50 transition-colors group/like flex-shrink-0">
                   <svg
-                    className="h-4 w-4 text-gray-400 group-hover/like:text-red-500"
+                    className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 group-hover/like:text-red-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -249,25 +250,25 @@ const TrendingResources = ({ activeTab, onTabChange }: TrendingResourcesProps) =
       </div>
 
       {/* Load More & Stats */}
-      <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 flex-1">
-          <div className="flex items-center justify-between">
+      <div className="mt-6 sm:mt-8 lg:mt-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 sm:gap-6">
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 flex-1">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start sm:justify-between gap-3 sm:gap-0">
             <div>
-              <p className="text-sm text-gray-600">Total Resources Viewed</p>
-              <p className="text-3xl font-bold text-gray-900">12,458</p>
+              <p className="text-xs sm:text-sm text-gray-600">Total Resources Viewed</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">12,458</p>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-600">This Month</p>
-              <p className="text-2xl font-bold text-green-600">+24%</p>
+            <div className="text-center sm:text-right">
+              <p className="text-xs sm:text-sm text-gray-600">This Month</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-green-600">+24%</p>
             </div>
           </div>
         </div>
 
-        <div className="flex gap-4">
-          <button className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-xl hover:border-blue-500 hover:text-blue-600 transition-all duration-300 font-medium">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
+          <button className="px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 bg-white border border-gray-300 text-gray-700 rounded-lg sm:rounded-xl hover:border-blue-500 hover:text-blue-600 transition-all duration-300 text-sm sm:text-base font-medium text-center">
             View All Resources
           </button>
-          <button className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 font-medium">
+          <button className="px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg sm:rounded-xl hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-300 text-sm sm:text-base font-medium text-center">
             Upload Resource
           </button>
         </div>
