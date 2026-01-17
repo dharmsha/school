@@ -144,7 +144,7 @@ const Hero = () => {
                 <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-ping absolute" />
                 <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full relative" />
               </div>
-              <span className="font-bold text-gray-800 text-sm sm:text-base">One Stop School Solution For All School And </span>
+              <span className="font-bold text-gray-800 text-sm sm:text-base">One Stop School Solution For All School Eqipments </span>
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-500" />
             </div>
           </motion.div>
