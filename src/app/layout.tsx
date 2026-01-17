@@ -4,7 +4,7 @@ import './globals.css';
 import { Toaster } from 'react-hot-toast';
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
-import MobileNav from "@/components/MobileNav";
+// import MobileNav from "@/components/MobileNav";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -85,7 +85,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <MobileNav />
+        {/* <MobileNav /> */}
         <Toaster position="top-right" />
       </body>
     </html>
